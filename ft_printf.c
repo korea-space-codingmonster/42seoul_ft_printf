@@ -55,6 +55,5 @@ void       initialize(char **format, t_tag *tt)
 
 int main(void)
 {
-    t_tag *tt;
-    ft_printf("%.*d", 10, 123);
+    ft_printf("%lld", 123);
 }

@@ -57,5 +57,7 @@ int		is_set(char c, char *set);
 char	*ft_strchr(const char *s, int c);
 void     parse_width(t_tag *tt, va_list ap);
 void    parse_precision(t_tag *tt, va_list ap);
+int     parse_len_modifier(t_tag *tt, va_list ap);
+int     write_on_condition(t_tag *tt, va_list ap);
 
 #endif

@@ -19,10 +19,8 @@ int     parse_symbol(t_tag *tt, va_list ap)
         parse_precision(tt, ap);
     if ((ft_strchr(LEN_MODIFIER, **format)))
         parse_len_modifier(tt, ap);
-    
-    printf("%d\n",tt->left_aligned);
-    printf("%d\n",tt->width);
-    printf("%d\n",tt->prcs);
+    if ((ft_strchr(CONVERSION, **format)) == FALSE)
+        return (ERROR);
     return (0);
 }
 
@@ -107,12 +105,18 @@ void    parse_precision(t_tag *tt, va_list ap)
     tt->format = format;
 }
 
-void    parse_len_modifier(t_tag *tt, va_list ap)
+int     parse_len_modifier(t_tag *tt, va_list ap)
 {
     char **format;
     
     format = tt->format;
-    if (!(is_set(**format, LEN_MODIFIER)))
-        return ;
-    if ()
+    if ((is_set(**format, LEN_MODIFIER)) == FALSE)
+        return (ERROR);
+    tt->len_mod += ENABLED;
+    while (is_set(**format, LEN_MODIFIER))
+    {
+        tt->len_mod += **format;
+        (*format)++;
+    }
+    return (parse_symbol(tt, ap));
 }
