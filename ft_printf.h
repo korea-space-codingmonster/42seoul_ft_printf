@@ -40,6 +40,7 @@ typedef struct	s_tag
 	int		len_mod;
 	char	padding;
 	char	sign;
+	int		conversion;
 }				t_tag;
 
 typedef struct	s_box
@@ -48,16 +49,43 @@ typedef struct	s_box
 	char *width;
 }				t_box;
 
+
+/*********************  ft_printf ***********************/
 int     ft_printf(const char *format, ...);
 int     process_format(char *format, va_list ap);
-int     parse_symbol(t_tag *tt, va_list ap);
 void     parse_flag(t_tag *tt, va_list ap);
 void       initialize(char **format, t_tag *tt);
-int		is_set(char c, char *set);
-char	*ft_strchr(const char *s, int c);
+int     write_on_condition(t_tag *tt, va_list ap);
+
+/********************* process_all *********************/
+int     process_int(t_tag *tt, va_list ap);
+
+
+/********************* parse_all ***********************/
+int     parse_symbol(t_tag *tt, va_list ap);
 void     parse_width(t_tag *tt, va_list ap);
 void    parse_precision(t_tag *tt, va_list ap);
-int     parse_len_modifier(t_tag *tt, va_list ap);
-int     write_on_condition(t_tag *tt, va_list ap);
+void     parse_len_modifier(t_tag *tt, va_list ap);
+int     parse_conversion(t_tag *tt, va_list ap);
+
+/********************* prepare_sign *******************/
+char    *prepare_sign(t_tag *tt, char *res);
+
+
+/********************* print_int **********************/
+int     print_int(t_tag *tt, va_list ap, char *res);
+char     *process_precision(t_tag *tt, char *res, char *box);
+
+
+
+/******************** manage_box **********************/
+t_box   *box_create(void);
+char    *fill_box(int prc_count, char zero);
+void    free_box(t_box *tb);
+
+
+
+/******************** process_all *********************/
+int     process_int(t_tag *tt, va_list ap);
 
 #endif

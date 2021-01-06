@@ -1,10 +1,31 @@
+
 #include "ft_printf.h"
 
-void    box_create(void)
+t_box   *box_create(void)
 {
     t_box *tb;
 
-    if ((tb = (t_box *)malloc(sizeof(t_box))) == ERROR)
-        return (ERROR);
-    
+    if (!(tb = (t_box *)malloc(sizeof(t_box))))
+    tb->prcs = NULL;
+    tb->width = NULL;
+    return (tb);
+}
+
+char    *fill_box(int prcs, char zero)
+{
+    char *box;
+
+    box = malloc(sizeof(char) * prcs + 1);
+    ft_memset(box, zero, prcs);//사이즈만큼 0 채우기
+    box[prcs] = '\0';//마지막 null 추가
+    return (box);//box 리턴
+}
+
+void    free_box(t_box *tb)
+{
+    if (tb->prcs)
+        free (tb->prcs);
+    if (tb->width)
+        free (tb->width);   
+    free(tb);
 }

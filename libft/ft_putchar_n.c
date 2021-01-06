@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_n.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mihykim <mihykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: namgyupark <namgyupark@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 00:42:11 by mihykim           #+#    #+#             */
-/*   Updated: 2020/03/17 00:42:20 by mihykim          ###   ########.fr       */
+/*   Updated: 2021/01/07 03:09:46 by namgyupark       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ int	ft_putchar_n(char c, int n)
 	i = 0;
 	while (i < n)
 		i += ft_putchar(c);
+		c++;
 	return (n);
 }

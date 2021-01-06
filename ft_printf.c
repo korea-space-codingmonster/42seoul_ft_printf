@@ -30,7 +30,9 @@ int     process_format(char *format, va_list ap)
         if (*format == '%')
         {
             format++;
-            if ((parse_symbol(tt, ap)) != ERROR)
+            if ((parse_symbol(tt, ap)) == ERROR)
+                return (ERROR);
+            if ((write_on_condition(tt, ap)) == ERROR)
                 return (ERROR);
         }
     }
@@ -49,11 +51,21 @@ void       initialize(char **format, t_tag *tt)
     tt->space   =   DISABLED;
     tt->hexa    =   DISABLED;
     tt->len_mod =   DISABLED;
+    tt->conversion = DISABLED;
     tt->padding =   ' ';
     tt->sign    =   '\0';
 }
 
+int     write_on_condition(t_tag *tt, va_list ap)
+{
+    if (tt->conversion == 'd' || tt->conversion == 'i')
+        return (process_int(tt, ap));
+    return (0);
+}
+
 int main(void)
 {
-    ft_printf("%lld", 123);
+    t_tag *tt;
+
+    ft_printf("[%100d]\n", 123456789);
 }
