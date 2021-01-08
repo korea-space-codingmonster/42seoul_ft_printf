@@ -60,12 +60,7 @@ int     write_on_condition(t_tag *tt, va_list ap)
 {
     if (tt->conversion == 'd' || tt->conversion == 'i')
         return (process_int(tt, ap));
+    if (tt->conversion == 'c')
+        return (process_char(tt, ap));
     return (0);
-}
-
-int main(void)
-{
-    t_tag *tt;
-
-    ft_printf("[%100d]\n", 123456789);
 }

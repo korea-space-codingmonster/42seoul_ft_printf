@@ -70,12 +70,12 @@ int     parse_conversion(t_tag *tt, va_list ap);
 
 /********************* prepare_sign *******************/
 char    *prepare_sign(t_tag *tt, char *res);
-
+char    *process_sign(char *box, t_tag *tt, int res_len);
 
 /********************* print_int **********************/
 int     print_int(t_tag *tt, va_list ap, char *res);
 char     *process_precision(t_tag *tt, char *res, char *box);
-
+char    *process_width(t_tag *tt, char *res, char *box);
 
 
 /******************** manage_box **********************/

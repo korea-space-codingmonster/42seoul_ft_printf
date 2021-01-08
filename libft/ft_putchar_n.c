@@ -6,7 +6,7 @@
 /*   By: namgyupark <namgyupark@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 00:42:11 by mihykim           #+#    #+#             */
-/*   Updated: 2021/01/07 03:09:46 by namgyupark       ###   ########.fr       */
+/*   Updated: 2021/01/07 14:40:14 by namgyupark       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int	ft_putchar_n(char c, int n)
 	i = 0;
 	while (i < n)
 		i += ft_putchar(c);
-		c++;
 	return (n);
 }

@@ -19,7 +19,27 @@ char     *process_precision(t_tag *tt, char *res, char *box)//res = 123
 
 char    *process_width(t_tag *tt, char *res, char *box)
 {
+    int res_len;
 
+    res_len = ft_strlen(res);
+    if (tt->sign == '\0' && tt->width <= res_len)
+        return (res);
+    if (tt->zero_fill == ENABLED && tt->left_aligned == DISABLED && tt->prcs == DISABLED)
+        tt->padding = '0';
+    if (tt->width < res_len)
+        tt->width = res_len;
+    if (tt->sign && tt->width == res_len)
+        tt->width++;
+    box = fill_box(tt->width, tt->padding);
+    if (box == NULL)
+        return (NULL);
+    if (tt->left_aligned == ENABLED && tt->sign)
+        ft_strncpy(box + 1, res, res_len);
+    if (tt->left_aligned == ENABLED)
+        ft_strncpy(box, res, res_len);
+    else
+        ft_strncpy(&box[tt->width - res_len], res, res_len);
+    return (process_sign(box, tt, res_len));
 }
 
 int     print_int(t_tag *tt, va_list ap, char *res)

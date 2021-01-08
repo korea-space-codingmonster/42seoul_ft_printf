@@ -21,3 +21,15 @@ int     process_int(t_tag *tt, va_list ap)
         return (ERROR);//itoa->%s
     return (print_int(tt, ap, res));
 }
+
+int     process_char(t_tag *tt, va_list ap)
+{
+    wint_t w;
+    char *res;
+
+    if (tt->len_mod == DISABLED)
+        res = (char)va_arg(ap, char);
+    else if (tt->len_mod == 'l')
+        w = (wchar_t)va_arg(ap, wint_t);
+        
+}
