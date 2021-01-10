@@ -26,10 +26,18 @@ int     process_char(t_tag *tt, va_list ap)
 {
     wint_t w;
     char *res;
+    char c;
 
     if (tt->len_mod == DISABLED)
-        res = (char)va_arg(ap, char);
+    {    
+        c = (char)va_arg(ap, int);
+        return (print_char(tt, ap, c));
+    }
     else if (tt->len_mod == 'l')
+    {
         w = (wchar_t)va_arg(ap, wint_t);
-        
+        res = ft_uitoa(w);
+        return (print_string(tt, ap, res));
+    }
+    return (ERROR);
 }

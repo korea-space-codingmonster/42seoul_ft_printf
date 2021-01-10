@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <wchar.h>
 
 int main()
 {
@@ -26,5 +27,6 @@ int main()
     //printf("[%-.10d]", 12345); //[0000012345]% precs가 있으면 0으로 채워짐
     //printf("[%-100d]", 123456789);
     //printf("[%-100d]", -12345);
-    printf(p);
+    printf("[%.12s]", "안녕하세요");//prcs = disalble
+
 }

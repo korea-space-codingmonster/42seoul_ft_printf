@@ -64,3 +64,9 @@ int     write_on_condition(t_tag *tt, va_list ap)
         return (process_char(tt, ap));
     return (0);
 }
+
+int main(void)
+{
+    wchar_t *str =L"한글";
+    printf("[%s]\n", *str);
+}

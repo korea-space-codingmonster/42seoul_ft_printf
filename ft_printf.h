@@ -59,7 +59,7 @@ int     write_on_condition(t_tag *tt, va_list ap);
 
 /********************* process_all *********************/
 int     process_int(t_tag *tt, va_list ap);
-
+int     process_char(t_tag *tt, va_list ap);
 
 /********************* parse_all ***********************/
 int     parse_symbol(t_tag *tt, va_list ap);
@@ -77,6 +77,10 @@ int     print_int(t_tag *tt, va_list ap, char *res);
 char     *process_precision(t_tag *tt, char *res, char *box);
 char    *process_width(t_tag *tt, char *res, char *box);
 
+
+/********************* print_char *********************/
+char     *process_width_char(t_tag *tt, char *box);
+int     print_char(t_tag *tt, va_list ap, char c);
 
 /******************** manage_box **********************/
 t_box   *box_create(void);
