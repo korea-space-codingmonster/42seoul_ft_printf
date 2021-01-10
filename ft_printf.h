@@ -49,47 +49,51 @@ typedef struct	s_box
 	char *width;
 }				t_box;
 
-
-/*********************  ft_printf ***********************/
+/************************ ft_printf.c *******************/
 int     ft_printf(const char *format, ...);
 int     process_format(char *format, va_list ap);
-void     parse_flag(t_tag *tt, va_list ap);
 void       initialize(char **format, t_tag *tt);
 int     write_on_condition(t_tag *tt, va_list ap);
 
-/********************* process_all *********************/
-int     process_int(t_tag *tt, va_list ap);
-int     process_char(t_tag *tt, va_list ap);
 
-/********************* parse_all ***********************/
+/************************ parse_all.c *******************/
 int     parse_symbol(t_tag *tt, va_list ap);
+void     parse_flag(t_tag *tt, va_list ap);
 void     parse_width(t_tag *tt, va_list ap);
 void    parse_precision(t_tag *tt, va_list ap);
 void     parse_len_modifier(t_tag *tt, va_list ap);
 int     parse_conversion(t_tag *tt, va_list ap);
 
-/********************* prepare_sign *******************/
-char    *prepare_sign(t_tag *tt, char *res);
-char    *process_sign(char *box, t_tag *tt, int res_len);
+/************************ process_all *******************/
+int     process_int(t_tag *tt, va_list ap);
+int     process_char(t_tag *tt, va_list ap);
+int     process_string(t_tag *tt, va_list ap);
+int     process_unsigned_int(t_tag *tt, va_list ap);
 
-/********************* print_int **********************/
-int     print_int(t_tag *tt, va_list ap, char *res);
-char     *process_precision(t_tag *tt, char *res, char *box);
-char    *process_width(t_tag *tt, char *res, char *box);
-
-
-/********************* print_char *********************/
-char     *process_width_char(t_tag *tt, char *box);
-int     print_char(t_tag *tt, va_list ap, char c);
-
-/******************** manage_box **********************/
+/************************ manage_box.c ******************/
 t_box   *box_create(void);
-char    *fill_box(int prc_count, char zero);
+char    *fill_box(int prcs, char zero);
 void    free_box(t_box *tb);
 
 
+/************************ prepare_sign.c ****************/
+char        *prepare_sign(t_tag *tt, char *res);
+char    *process_sign(char *box, t_tag *tt, int res_len);
 
-/******************** process_all *********************/
-int     process_int(t_tag *tt, va_list ap);
+
+/************************ print_char ********************/
+int     print_char(t_tag *tt, char c);
+char     *process_width_char(t_tag *tt, char *box);
+
+
+/************************ print_int *********************/
+int     print_int(t_tag *tt, char *res);
+char    *process_width_int(t_tag *tt, char *res, char *box);
+char     *process_precision_int(t_tag *tt, char *res, char *box);
+
+/************************ print_string *****************/
+int     print_string(t_tag *tt, char *res);
+char    *process_width_string(t_tag *tt, char *box, char *res);
+char *process_precision_string(t_tag *tt, char *box, char *res);
 
 #endif

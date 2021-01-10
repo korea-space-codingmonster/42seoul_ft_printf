@@ -10,7 +10,7 @@ char     *process_width_char(t_tag *tt, char *box)
     return (box);
 }
 
-int     print_char(t_tag *tt, va_list ap, char c)//res = char
+int     print_char(t_tag *tt, char c)//res = char
 {
     char *res;
     t_box *box;
@@ -18,7 +18,7 @@ int     print_char(t_tag *tt, va_list ap, char c)//res = char
 
     i = 0;
     box = box_create();
-    if (tt->prcs > 0)
+    if (tt->prcs > 0)//printf("%.4c". "a");
         return (UNDEFINED_BEHAVIOR);
     if ((res = process_width_char(tt, box->width)) == NULL)
     {

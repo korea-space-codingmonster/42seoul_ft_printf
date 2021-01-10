@@ -19,7 +19,7 @@ int     process_int(t_tag *tt, va_list ap)
         return (ERROR);
     if (res == NULL)
         return (ERROR);//itoa->%s
-    return (print_int(tt, ap, res));
+    return (print_int(tt, res));
 }
 
 int     process_char(t_tag *tt, va_list ap)
@@ -31,13 +31,62 @@ int     process_char(t_tag *tt, va_list ap)
     if (tt->len_mod == DISABLED)
     {    
         c = (char)va_arg(ap, int);
-        return (print_char(tt, ap, c));
+        return (print_char(tt, c));
     }
     else if (tt->len_mod == 'l')
     {
         w = (wchar_t)va_arg(ap, wint_t);
-        res = ft_uitoa(w);
-        return (print_string(tt, ap, res));
+        res = ft_atouni(w);
+        return (print_string(tt, res));
     }
     return (ERROR);
+}
+
+int     process_string(t_tag *tt, va_list ap)
+{
+    wchar_t *s;
+    char *res;
+    char *rs;
+    int i;
+
+    if (tt->len_mod == DISABLED)
+    {
+        res = va_arg(ap, char *);
+        return (print_string(tt, res));
+    }
+    else if (tt->len_mod == 'l')
+    {
+        s = va_arg(ap, wchar_t *);
+        res = ft_atouni(s[0]);
+        i = 1;
+        while (s[i] != L'\0')
+        {
+            rs = ft_strjoin(res, ft_atouni(s[i++]));
+            res = rs;
+            free(rs);
+        }
+        return (print_string(tt, res));
+    }
+    return (ERROR);
+}
+
+int     process_unsigned_int(t_tag *tt, va_list ap)
+{
+    char *res;
+
+    if (tt->len_mod == DISABLED)
+        res = ft_uitoa((unsigned int)va_arg(ap, int));
+    else if (tt->len_mod == 'h' + 'h')
+        res = ft_uitoa((unsigned char)va_arg(ap, int));
+    else if (tt->len_mod == 'h')
+        res = ft_uitoa((unsigned short)va_arg(ap, int));
+    else if (tt->len_mod == 'l')
+        res = ft_ulltoa((unsigned long)va_arg(ap, long));
+    else if (tt->len_mod == 'l' + 'l')
+        res = ft_ulltoa((unsigned long long)va_arg(ap, long long));
+    else
+        return (ERROR);
+    if(res == NULL)
+        return (ERROR);
+    return (print_int(tt, res));
 }

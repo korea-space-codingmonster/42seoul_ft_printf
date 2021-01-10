@@ -1,7 +1,7 @@
 
 #include "ft_printf.h"
 
-char     *process_precision(t_tag *tt, char *res, char *box)//res = 123
+char     *process_precision_int(t_tag *tt, char *res, char *box)//res = 123
 {
     int res_len;
 
@@ -17,7 +17,7 @@ char     *process_precision(t_tag *tt, char *res, char *box)//res = 123
     return (box);
 }
 
-char    *process_width(t_tag *tt, char *res, char *box)
+char    *process_width_int(t_tag *tt, char *res, char *box)
 {
     int res_len;
 
@@ -42,7 +42,7 @@ char    *process_width(t_tag *tt, char *res, char *box)
     return (process_sign(box, tt, res_len));
 }
 
-int     print_int(t_tag *tt, va_list ap, char *res)
+int     print_int(t_tag *tt, char *res)
 {
     t_box *box;
     int i;
@@ -50,8 +50,8 @@ int     print_int(t_tag *tt, va_list ap, char *res)
     i = 0;
     box = box_create();//출력할 문자를 담을 메모리 할당
     res = prepare_sign(tt, res);//출력할 문자가 -인자 + 인지 공백 존재 여부 확인
-    if ((res = process_precision(tt, res, box->prcs)) == NULL ||
-            (res = process_width(tt, res, box->width)) == NULL)
+    if ((res = process_precision_int(tt, res, box->prcs)) == NULL ||
+            (res = process_width_int(tt, res, box->width)) == NULL)
     {
         free_box(box);
         return (0);
@@ -62,6 +62,6 @@ int     print_int(t_tag *tt, va_list ap, char *res)
         i++;
         tt->nbyte++;
     }
-    free(box);
+    free_box(box);
     return (0);
 }

@@ -62,11 +62,14 @@ int     write_on_condition(t_tag *tt, va_list ap)
         return (process_int(tt, ap));
     if (tt->conversion == 'c')
         return (process_char(tt, ap));
+    if (tt->conversion == 's')
+        return (process_string(tt, ap));
+    if (tt->conversion == 'u')
+        return (process_unsigned_int(tt, ap));
     return (0);
 }
 
 int main(void)
 {
-    wchar_t *str =L"한글";
-    printf("[%s]\n", *str);
+    ft_printf("[%u]",-12345);
 }
