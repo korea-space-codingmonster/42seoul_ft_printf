@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namgyupark <namgyupark@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/12 21:48:16 by namgyupark        #+#    #+#             */
+/*   Updated: 2021/01/12 21:48:19 by namgyupark       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int     ft_printf(const char *format, ...)
@@ -30,7 +42,7 @@ int     process_format(char *format, va_list ap)
         if (*format == '%')
         {
             format++;
-            if ((parse_symbol(tt)) == ERROR)
+            if ((parse_symbol(tt, ap)) == ERROR)
                 return (ERROR);
             if ((write_on_condition(tt, ap)) == ERROR)
                 return (ERROR);
@@ -78,9 +90,4 @@ int     write_on_condition(t_tag *tt, va_list ap)
         return (store_nbyte(tt, ap));
     else 
         return (ERROR);
-}
-
-int main(void)
-{
-    ft_printf("%%");
 }
