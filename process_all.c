@@ -90,3 +90,30 @@ int     process_unsigned_int(t_tag *tt, va_list ap)
         return (ERROR);
     return (print_int(tt, res));
 }
+
+int     process_hexa(t_tag *tt, va_list ap, char *base, char conv)
+{
+    char *res;
+    int i = 0;
+
+    if (tt->len_mod == DISABLED)
+        res = ft_itoa_base((int)va_arg(ap, int), base);
+    else if (tt->len_mod == 'h' + 'h')
+        res = ft_itoa_base((unsigned char)va_arg(ap, int), base);
+    else if (tt->len_mod == 'h')
+        res = ft_itoa_base((unsigned short)va_arg(ap, int), base);
+    else if (tt->len_mod == 'l')
+        res = ft_lltoa_base((long)va_arg(ap, long), base);
+    else if (tt->len_mod == 'l' + 'l')
+        res = ft_lltoa_base((long long)va_arg(ap, long long), base);
+    else
+        return (ERROR);
+    if (res == NULL)
+        return (ERROR);
+    while (res[i] != '\0')
+    {
+        printf("[%c]", *res);
+        i++;
+    }
+    return (print_hexa(tt, res, conv));
+}

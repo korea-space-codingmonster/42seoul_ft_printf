@@ -58,17 +58,18 @@ int     write_on_condition(t_tag *tt, va_list ap);
 
 /************************ parse_all.c *******************/
 int     parse_symbol(t_tag *tt, va_list ap);
-void     parse_flag(t_tag *tt, va_list ap);
+void     parse_flag(t_tag *tt);
 void     parse_width(t_tag *tt, va_list ap);
 void    parse_precision(t_tag *tt, va_list ap);
-void     parse_len_modifier(t_tag *tt, va_list ap);
-int     parse_conversion(t_tag *tt, va_list ap);
+void     parse_len_modifier(t_tag *tt);
+int     parse_conversion(t_tag *tt);
 
 /************************ process_all *******************/
 int     process_int(t_tag *tt, va_list ap);
 int     process_char(t_tag *tt, va_list ap);
 int     process_string(t_tag *tt, va_list ap);
 int     process_unsigned_int(t_tag *tt, va_list ap);
+int     process_hexa(t_tag *tt, va_list ap, char *base, char conv);
 
 /************************ manage_box.c ******************/
 t_box   *box_create(void);
@@ -95,5 +96,32 @@ char     *process_precision_int(t_tag *tt, char *res, char *box);
 int     print_string(t_tag *tt, char *res);
 char    *process_width_string(t_tag *tt, char *box, char *res);
 char *process_precision_string(t_tag *tt, char *box, char *res);
+
+
+/************************ print_hexa *****************/
+int     print_hexa(t_tag *tt, char *res, char conv);
+char    *process_width_hexa(t_tag *tt, char *box, char *res, char conv);
+void    process_pound(t_tag *tt, char *box, char conv, int res_len);
+char    *process_precision_hexa(t_tag *tt, char *box ,char *res);
+
+
+/************************ print_pointer *****************/
+int     print_pointer(t_tag *tt, va_list ap);
+char *process_width_pointer(t_tag *tt, char *box, char *res);
+char *process_precision_pointer(t_tag *tt, char *box, char *res);
+
+
+/************************ print_percent *****************/
+int     print_percent(t_tag *tt);
+char *process_width_percent(t_tag *tt, char *box, char c);
+
+
+/************************ store_nbyte *****************/
+int     store_nbyte(t_tag *tt, va_list ap);
+void    store_nbyte_ll(t_tag *tt, va_list ap);
+void    store_nbyte_l(t_tag *tt, va_list ap);
+void    store_nbyte_h(t_tag *tt, va_list ap);
+void    store_nbyte_hh(t_tag *tt, va_list ap);
+
 
 #endif

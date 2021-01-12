@@ -12,19 +12,19 @@ int     parse_symbol(t_tag *tt, va_list ap)
         return (0);
     }
     if ((ft_strchr(FLAG, **format)))
-        parse_flag(tt, ap);
+        parse_flag(tt);
     if ((ft_strchr(DIGIT, **format)))
         parse_width(tt, ap);
     if ((ft_strchr(".", **format)))
         parse_precision(tt, ap);
     if ((ft_strchr(LEN_MODIFIER, **format)))
-        parse_len_modifier(tt, ap);
+        parse_len_modifier(tt);
     if ((ft_strchr(CONVERSION, **format)))
-        parse_conversion(tt, ap);
+        parse_conversion(tt);
     return (0);
 }
 
-void     parse_flag(t_tag *tt, va_list ap)
+void     parse_flag(t_tag *tt)
 {
     char **format;
     format = tt->format;
@@ -105,7 +105,7 @@ void    parse_precision(t_tag *tt, va_list ap)
     tt->format = format;
 }
 
-void     parse_len_modifier(t_tag *tt, va_list ap)
+void     parse_len_modifier(t_tag *tt)
 {
     char **format;
     
@@ -121,7 +121,7 @@ void     parse_len_modifier(t_tag *tt, va_list ap)
     tt->format = format;
 }
 
-int     parse_conversion(t_tag *tt, va_list ap)
+int     parse_conversion(t_tag *tt)
 {
     char **format;
     format = tt->format;

@@ -3,7 +3,8 @@
 
 char *process_precision_string(t_tag *tt, char *box, char *res)
 {
-    if (tt->prcs == DISABLED || tt->prcs != 0 && tt->prcs > ft_strlen(res))
+    if (tt->prcs == DISABLED ||
+			(tt->prcs != 0 && tt->prcs >= ft_strlen(res)))
         return (res);
     box = malloc(sizeof(char) * (tt->prcs + 1));
     if (box == NULL)

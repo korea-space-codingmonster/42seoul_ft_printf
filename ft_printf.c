@@ -30,7 +30,7 @@ int     process_format(char *format, va_list ap)
         if (*format == '%')
         {
             format++;
-            if ((parse_symbol(tt, ap)) == ERROR)
+            if ((parse_symbol(tt)) == ERROR)
                 return (ERROR);
             if ((write_on_condition(tt, ap)) == ERROR)
                 return (ERROR);
@@ -66,10 +66,21 @@ int     write_on_condition(t_tag *tt, va_list ap)
         return (process_string(tt, ap));
     if (tt->conversion == 'u')
         return (process_unsigned_int(tt, ap));
-    return (0);
+    if (tt->conversion == 'x')
+        return (process_hexa(tt, ap, HEX_LOW, 'x'));
+    if (tt->conversion == 'X')
+        return (process_hexa(tt, ap, HEX_UP, 'X'));
+    if (tt->conversion == 'p')
+        return (print_pointer(tt, ap));
+    if (tt->conversion == '%')
+        return (print_percent(tt));
+    if (tt->conversion == 'n')
+        return (store_nbyte(tt, ap));
+    else 
+        return (ERROR);
 }
 
 int main(void)
 {
-    ft_printf("[%u]",-12345);
+    ft_printf("%%");
 }

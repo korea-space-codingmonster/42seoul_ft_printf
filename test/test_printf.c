@@ -31,5 +31,7 @@ int main()
     //printf("[%.12s]", "안녕하세요");//prcs = disalble
     //printf("[%.s]", "안녕하세요");//[]
     //printf("[%.30s]", "안녕하세요");//[안녕하세요]
-    printf("[%u]", -12345);//disable
+    //printf("[%u]", -12345);//disable
+
+    printf("[%x]", 768955);
 }
