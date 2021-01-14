@@ -6,41 +6,41 @@
 /*   By: namgyupark <namgyupark@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:48:57 by namgyupark        #+#    #+#             */
-/*   Updated: 2021/01/12 21:49:00 by namgyupark       ###   ########.fr       */
+/*   Updated: 2021/01/14 18:40:12 by namgyupark       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char     *process_width_char(t_tag *tt, char *box)
+char	*process_width_char(t_tag *tt, char *box)
 {
-    if (tt->width < 1)
-        return ("");
-    box = fill_box(tt->width, tt->padding);
-    if (box == NULL)
-        return (NULL);
-    return (box);
+	if (tt->width < 1)
+		return ("");
+	box = fill_box(tt->width, tt->padding);
+	if (box == NULL)
+		return (NULL);
+	return (box);
 }
 
-int     print_char(t_tag *tt, char c)//res = char
+int		print_char(t_tag *tt, char c)
 {
-    char *res;
-    t_box *box;
-    int i;
+	char	*res;
+	int		i;
+	t_box	*box;
 
-    i = 0;
-    box = box_create();
-    if (tt->prcs > 0)//printf("%.4c". "a");
-        return (UNDEFINED_BEHAVIOR);
-    if ((res = process_width_char(tt, box->width)) == NULL)
-    {
-        free_box(box);
-        return (ERROR);
-    }
-    if (tt->left_aligned == ENABLED)
-        tt->nbyte += ft_putchar(c) + ft_putstr(res);
-    else
-        tt->nbyte += ft_putstr(res) + ft_putchar(c);
-    free_box(box);
-    return (0);
+	i = 0;
+	box = box_create();
+	if (tt->prcs > 0)
+		return (UNDEFINED_BEHAVIOR);
+	if ((res = process_width_char(tt, box->width)) == NULL)
+	{
+		free_box(box);
+		return (ERROR);
+	}
+	if (tt->left_aligned == ENABLED)
+		tt->nbyte += ft_putchar(c) + ft_putstr(res);
+	else
+		tt->nbyte += ft_putstr(res) + ft_putchar(c);
+	free_box(box);
+	return (0);
 }
